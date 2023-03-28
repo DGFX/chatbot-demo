@@ -1,7 +1,7 @@
 import * as pg from 'pg';
 import { Sequelize } from 'sequelize-cockroachdb';
 
-const sequelize = new Sequelize(process.env.DATABASE_URL!, { logging: false,  dialect: 'postgres', dialectModule: pg });
+const sequelize = new Sequelize(process.env.DATABASE_URL!, { logging: false, dialectModule: pg });
 
 type ConversationLogEntry = {
   entry: string,

@@ -4,7 +4,7 @@ import { Document } from "langchain/document";
 import { OpenAIEmbeddings } from "langchain/embeddings";
 import { TokenTextSplitter } from "langchain/text_splitter";
 import { NextApiRequest, NextApiResponse } from "next";
-import { uuid } from "uuidv4";
+import { v4 as uuidv4 } from 'uuid';
 import { Crawler, Page } from '../../crawler';
 
 const limiter = new Bottleneck({
@@ -84,7 +84,7 @@ export default async function handler(
       const embedding = await embedder.embedQuery(doc.pageContent)
       console.log("done embedding", doc.metadata.url)
       return {
-        id: uuid(),
+        id: uuidv4(),
         values: embedding,
         metadata: {
           chunk: doc.pageContent,
