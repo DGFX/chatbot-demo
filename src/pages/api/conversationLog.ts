@@ -1,7 +1,7 @@
 import * as pg from 'pg';
 import { Sequelize } from 'sequelize-cockroachdb';
 
-const sequelize = new Sequelize(process.env.DATABASE_URL!, { logging: false, dialectModule: pg });
+const sequelize = new Sequelize(process.env.DATABASE_URL!, { logging: false,  dialect: 'postgres', dialectModule: pg });
 
 type ConversationLogEntry = {
   entry: string,
@@ -19,7 +19,7 @@ class ConversationLog {
   public async addEntry({ entry, speaker }: { entry: string, speaker: string }) {
     try {
       await sequelize.query(`INSERT INTO conversations (user_id, entry, speaker) VALUES (?, ?, ?) ON CONFLICT (created_at) DO NOTHING`, {
-        replacements: [this.userId, entry, speaker],
+        replacements: [this.userId, entry, speaker ],
       });
     } catch (e) {
       console.log(`Error adding entry: ${e}`)

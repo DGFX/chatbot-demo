@@ -139,7 +139,7 @@ export default function Home() {
               <MessageList
                 typingIndicator={
                   botIsTyping ? (
-                    <TypingIndicator content="Pinecone is typing" />
+                    <TypingIndicator content="Fojcik Bot is typing" />
                   ) : null
                 }
               >
@@ -161,7 +161,7 @@ export default function Home() {
                       </Message.CustomContent>
                       <Message.Footer
                         sentTime={timeago.format(entry.date)}
-                        sender={entry.speaker === "bot" ? "Pinecone" : "You"}
+                        sender={entry.speaker === "bot" ? "Fojcik Bot" : "You"}
                       />
                     </Message>
                   );
